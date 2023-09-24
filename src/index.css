@@ -126,9 +126,9 @@ body {
     cursor: pointer;
   }
 
-  .sliderDiv .splide__track .splide__list{
-    gap: 3.4375rem !important;
-  }
+  /* .sliderDiv .splide__track .splide__list{
+    gap: 1rem !important;
+  } */
 }
 .popular-movies {
   overflow: hidden;
