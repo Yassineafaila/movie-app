@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import { formToJSON } from "axios";
 import Footer from "../components/Footer/Footer";
 function Home() {
   const [currentSelection, setCurrentSelection] = useState([]);
@@ -39,15 +38,12 @@ function Home() {
   //end slide
   const splideOption = {
     type: "slide",
-    // rewind: true,
-    // width: 100%,
     gap: "1rem",
     padding: "1rem",
     perPage: 6,
     pagination: false,
     height: 300,
     rewindByDrag: true,
-    padding: "2%",
     breakpoints: {
       1440: {
         perPage: 5,
@@ -73,7 +69,6 @@ function Home() {
       375: {
         perPage: 1,
         gap: "0.1em",
-        padding: "0 0 0 1em",
       },
     },
     focus: "center",

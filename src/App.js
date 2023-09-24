@@ -1,6 +1,4 @@
-
-import React, { useState, useEffect } from "react";
-import {Routes,Route, useLocation} from "react-router-dom"
+import {Routes,Route} from "react-router-dom"
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import  {NavbAr}  from "./components/Navbar/navbar";

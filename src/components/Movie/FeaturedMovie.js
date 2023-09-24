@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { IMG_URL, IMG_URL_BACKGROUND } from "../../services/apiUrl";
+import React from "react";
+import {IMG_URL_BACKGROUND } from "../../services/apiUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-// import { fetchMovieDetail } from "../services/api_user";
 
 function FeaturedMovie({ movie }) {
   return (

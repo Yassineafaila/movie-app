@@ -20,7 +20,6 @@ function MovieDetails() {
   const [Cast, setCast] = useState([]);
   const [recommendation, setRecommendation] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const splideOption = {
     type: "slide",
     // rewind: true,
@@ -31,7 +30,6 @@ function MovieDetails() {
     pagination: false,
     height: 300,
     rewindByDrag: true,
-    padding: "2%",
     breakpoints: {
       1440: {
         perPage: 5,
@@ -57,38 +55,35 @@ function MovieDetails() {
       375: {
         perPage: 1,
         gap: "0.1em",
-        padding: "0 0 0 1em",
       },
     },
     focus: "center",
   };
   useEffect(() => {
     const MovieD = async () => {
-      const { data: data } = await fetchMovieDetails(id);
-      const result = data ? setMovieDetail(data) : "No Data";
+      const { data } = await fetchMovieDetails(id);
+      setMovieDetail(data)
     };
     const Cast = async () => {
       const { data } = await fetchCastOfMovie(id);
-      const result = data.cast ? setCast(data.cast) : "No Data";
+      setCast(data.cast)
     };
     const Recommendation = async () => {
       const {
         data: { results },
       } = await fetchRecommendation(id);
-      const result = results ? setRecommendation(results) : "No Data";
+      setRecommendation(results)
     };
     const SimilarMovies = async () => {
       const {
         data: { results },
       } = await fetchSimilarMovies(id);
-
-      const result = results ? setSimilarMovies(results) : "No Data";
+      setSimilarMovies(results)
     };
     MovieD();
     Cast();
     Recommendation();
     SimilarMovies();
-    setIsLoading(false);
   }, [id]);
   const renderCategory = () => {
     const category = MovieDetail.genres ? MovieDetail.genres : null;
@@ -135,6 +130,7 @@ function MovieDetails() {
       );
     });
   };
+  console.log(Cast)
   const renderSimilarMovies = () => {
     return similarMovies.map((movie) => {
       return (
