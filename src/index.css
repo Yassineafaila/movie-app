@@ -1,13 +1,455 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+* {
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+img,
+picture,
+svg {
+  max-width: 100% !important;
+  display: block !important;
+}
+a {
+  text-decoration: none !important;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100vh !important;
+}
+.App {
+  background-color: #1b1b1b;
+}
+.App .navbar{
+  background-color: #1b1b1b !important;
+  color: white !important;
+}
+.navbar .logo{
+  font-size: 2.125rem !important;
+  font-weight: bold;
+}
+.navbar .navbar-nav{
+  max-height: max-content !important;
+}
+.navbar .container-fluid button{
+  background-color: red !important;
+  color: white !important;
+}
+.navbar .container-fluid button span{
+  color: white !important;
+  border: none !important;
+}
+.navbar a:hover{
+  color: red !important;
+}
+.navbar form input{
+  outline: none !important;
+  border: none !important;
+}
+.navbar form  .btn-search{
+  color: #fff;
+  background-color: red !important;
+  outline: none !important;
+  border: none !important;
+}
+.hero {
+  height: calc(100vh - 300px) !important;
+}
+.hero .movie-card {
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.hero .movie-card .movie-detail {
+  width: 600px;
 }
+.hero .movie-card .hero-title {
+  font-size: 2.375rem;
+  font-weight: bold;
+}
+.hero .movie-card .overview {
+  font-size: 1rem;
+}
+.movie-card .buttons {
+  max-width: 23.4375rem;
+}
+.hero .movie-card .movie-now {
+  width: 11.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+  -ms-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  background-color: red;
+}
+.hero .movie-card .movie-trailer {
+  width: 11.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+  -ms-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+}
+.hero .slide-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-inline: 1rem;
+}
+.hero .slide-buttons .btn-slide {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 1rem !important;
+  border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
+  -moz-border-radius: 1.25rem;
+  -ms-border-radius: 1.25rem;
+  -o-border-radius: 1.25rem;
+}
+@media screen and (max-width:769px){
+  .hero .movie-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero .movie-detail span,
+  .hero .movie-detail .overview,
+  .hero .movie-detail .buttons{
+    display: none !important;
+  }
+  .hero .movie-detail .hero-title{
+    cursor: pointer;
+  }
+
+  .sliderDiv .splide__track .splide__list{
+    gap: 3.4375rem !important;
+  }
+}
+.popular-movies {
+  overflow: hidden;
+}
+.popular-movies .popular-title {
+  font-size:25px ;
+  padding-left:0.625rem !important ;
+  border-left:4px solid red ;
+}
+.popular-movies .line {
+  flex: 1;
+  height: 2px;
+  background-color: #fff;
+}
+.popular-movies .container {
+  width: 100% !important;
+}
+.popular-movies .sliderDiv .movie-card {
+  /* width: 900px; */
+  width: 12.5rem;
+  /* height: 300px !important; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.popular-movies .sliderDiv .movie-card h4 {
+  font-size: 1rem;
+  display: none;
+  z-index: 9999999;
+}
+.popular-movies .sliderDiv .movie-card:hover h4 {
+  display: block;
+}
+.popular-movies .sliderDiv .movie-card .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+.sliderDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3.125rem;
+}
+.sliderDiv .splide__arrows .splide__arrow--prev,
+.sliderDiv .splide__arrows .splide__arrow--next {
+  background-color: red;
+  color: #fff;
+}
+.top-movies {
+  overflow: hidden;
+}
+.top-movies .top-title {
+  font-size:25px ;
+  padding-left:0.625rem !important ;
+  border-left:4px solid red ;
+}
+.top-movies .line {
+  flex: 1;
+  height: 2px;
+  background-color: #fff;
+}
+.top-movies .container {
+  width: 100% !important;
+}
+.top-movies .sliderDiv .movie-card {
+  /* width: 900px; */
+  width: 12.5rem;
+  /* height: 300px !important; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.top-movies .sliderDiv .movie-card h4 {
+  font-size: 1rem;
+  display: none;
+  z-index: 9999999;
+}
+.top-movies .sliderDiv .movie-card:hover h4 {
+  display: block;
+}
+.top-movies .sliderDiv .movie-card .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+.up-movies {
+  overflow: hidden;
+}
+.up-movies .up-title {
+  font-size:25px ;
+  padding-left:0.625rem !important ;
+  border-left:4px solid red ;
+}
+.up-movies .line {
+  flex: 1;
+  height: 2px;
+  background-color: #fff;
+}
+.up-movies .container {
+  width: 100% !important;
+}
+.up-movies .sliderDiv .movie-card {
+  /* width: 900px; */
+  width: 12.5rem;
+  /* height: 300px !important; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.up-movies .sliderDiv .movie-card h4 {
+  font-size: 1rem;
+  display: none;
+  z-index: 9999999;
+}
+.up-movies .sliderDiv .movie-card:hover h4 {
+  display: block;
+}
+.up-movies .sliderDiv .movie-card .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+@media screen and (max-width: 400px) {
+  .hero .movie-card .movie-detail {
+    display: none !important;
+  }
+  .sliderDiv .splide__slide.is-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ---Start-page-trailer--- */
+.hero-trailer {
+  height: calc(100vh - 80px);
+}
+.hero-trailer .close {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1rem !important;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
+  -moz-border-radius: 1.25rem;
+  -ms-border-radius: 1.25rem;
+  -o-border-radius: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.0625rem;
+}
+.hero-trailer .iframe {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ---End-page-trailer--- */
+/* ----Start-page-movie-details-------- */
+.movie-details .details {
+  height: calc(100vh - 300px);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+.movie-details .profile {
+  height: 18.75rem;
+  width: 11.25rem;
+}
+
+.movie-details .title {
+  font-size: 34px;
+}
+.movie-detail .movie-info .movie-category span {
+  margin: 1rem !important;
+}
+.movie-cast div div{
+  width: 9.375rem !important;
+  height: 20.625rem !important;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  cursor: pointer;
+}
+.movie-cast >div   .profile-title{
+  font-size: 0.9375rem !important;
+}
+.movie-details .overview .movie-trailer{
+  background-color: red !important;
+}
+.movie-details .movie-recommendation .sliderDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.875rem !important;
+}
+.movie-details .movie-recommendation .sliderDiv .movie-card {
+  /* width: 900px; */
+  width: 200px;
+  /* height: 300px !important; */
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.movie-details h3{
+  border-left: 4px solid red;
+  padding-left: 1.25rem !important;
+}
+.movie-details .movie-recommendation .sliderDiv .movie-card h4 {
+  font-size: 1rem;
+  display: none;
+  z-index: 9999999;
+}
+.movie-details .movie-recommendation .sliderDiv .movie-card:hover h4 {
+  display: block;
+}
+.movie-details .movie-recommendation .sliderDiv .movie-card .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+/* ----End-page-movie-details-------- */
+/* ----start-actor-page---- */
+.Actor{
+  margin-top: 2.5rem !important;
+}
+.Actor .Actor-details .details h4{
+  font-weight: bold;
+  font-size: 1.5625rem;
+}
+.Actor .Actor-details .details p{
+  color: red;
+}
+.Actor .Actor-details.details p span{
+  color: #c7bebe !important;
+}
+.Actor .Actor-details .details a{
+ padding-bottom: 1rem !important;
+ color: #fff;
+ background-color: red;
+ padding: 0.625rem 0.875rem !important;
+ border-radius: 0.5rem;
+ -webkit-border-radius: 0.5rem;
+ -moz-border-radius: 0.5rem;
+ -ms-border-radius: 0.5rem;
+ -o-border-radius: 0.5rem;
+ margin-top: 0.625rem !important;
+}
+.Actor .Image-Actor h3{
+  border-left: 4px solid red;
+  padding-left: 1.25rem !important;
+}
+.Actor .Actor-movies h3{
+  border-left: 4px solid red;
+  padding-left: 1.25rem !important;
+}
+.Actor .sliderDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.875rem !important;
+}
+.Actor .sliderDiv .movie-card,
+.Actor .sliderDiv img{
+  /* width: 900px; */
+  width: 200px;
+  /* height: 300px !important; */
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.Actor .sliderDiv .movie-card h4 {
+  font-size: 1rem;
+  display: none;
+  z-index: 9999999;
+}
+.Actor .sliderDiv .movie-card:hover h4 {
+  display: block;
+}
+.Actor .sliderDiv .movie-card .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+/* ----end-actor-page---- */

@@ -5,11 +5,6 @@
 <div align="center">
   <h1 align="center">Movie App</h1>
 
-> ~
->
-> <h3 align="center">A web application that allows users to search for movies and view details about them.</h3>
-> 
-
 </div>
 
 
@@ -24,6 +19,7 @@ This project is a web application that allows users to search for movies and vie
 - [React-router](https://reactrouter.com/en/main) - Loading Skeleton
 - [Axios](https://axios-http.com/) - HTTP Client
 - [SplideJS](https://splidejs.com/) - Carousel
+- [framer-motion](https://www.framer.com/motion/) - animation
 
 ## Getting Started <a name = "getting_started"></a>
 
