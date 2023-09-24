@@ -130,7 +130,6 @@ function MovieDetails() {
       );
     });
   };
-  console.log(Cast)
   const renderSimilarMovies = () => {
     return similarMovies.map((movie) => {
       return (
