@@ -124,6 +124,7 @@ body {
   }
   .hero .movie-detail .hero-title{
     cursor: pointer;
+    display: block !important;
   }
 
   /* .sliderDiv .splide__track .splide__list{
