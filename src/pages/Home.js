@@ -5,9 +5,9 @@ import {
   fetchTopMovies,
   fetchUpComingMovies,
 } from "../services/api_user";
-import FeaturedMovie from "../components/Movie/FeaturedMovie";
+import FeaturedMovie from "../components/FeaturedMovie/FeaturedMovie";
 import BtnSlider from "../components/BtnSlider/BtnSlider";
-import MovieCard from "../components/Movie/MovieCard";
+import MovieCard from "../components/MovieCard//MovieCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";

@@ -1,11 +1,11 @@
-import {Routes,Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
-import  {NavbAr}  from "./components/Navbar/navbar";
+import { NavbAr } from "./components/Navbar/navbar";
 import Contact from "./pages/Contact";
 import MovieDetails from "./pages/MovieDetails";
-import MovieTrailer from "./pages/MovieTrailer";
-import ActorsDetails from "./pages/ActorsDetails";
+import MovieTrailer from "./components/MovieTrailer/MovieTrailer";
+import ActorsDetails from "./components/Profile/ActorsDetails";
 
 function App() {
   return (

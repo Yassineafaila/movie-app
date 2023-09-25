@@ -12,7 +12,7 @@ import {
 import Footer from "../components/Footer/Footer";
 import { IMG_URL_BACKGROUND } from "../services/apiUrl";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import MovieCard from "../components/Movie/MovieCard";
+import MovieCard from "../components/MovieCard/MovieCard";
 function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();

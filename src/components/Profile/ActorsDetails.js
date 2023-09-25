@@ -4,14 +4,14 @@ import {
   fetchDetailsActor,
   fetchImagesActor,
   fetchMovieActor,
-} from "../services/api_user";
-import Footer from "../components/Footer/Footer";
-import { IMG_URL_POSTER } from "../services/apiUrl";
+} from "../../services/api_user";
+import Footer from "../Footer/Footer";
+import { IMG_URL_POSTER } from "../../services/apiUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import MovieCard from "../components/Movie/MovieCard";
+import MovieCard from "../MovieCard/MovieCard";
 function ActorsDetails() {
   const { id } = useParams();
   const [personDetail, setPersonDetail] = useState({});
