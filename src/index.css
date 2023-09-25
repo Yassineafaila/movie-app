@@ -274,16 +274,6 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   display: block;
 }
-@media screen and (max-width: 400px) {
-  .hero .movie-card .movie-detail {
-    display: none !important;
-  }
-  .sliderDiv .splide__slide.is-active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
 /* ---Start-page-trailer--- */
 .hero-trailer {

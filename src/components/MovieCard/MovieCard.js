@@ -15,7 +15,7 @@ function MovieCard({ movie }) {
         animate={{ opacity: 1, x: 0, duration: 1.4 }}
         transition={{ duration: 1 }}
         exit={{ opacity: 0, x: 800 }}
-        className="movie-card position-relative "
+        className="movie-card position-relative mx-2 "
         style={{
           backgroundImage: `url(${IMG_URL_POSTER}${movie.poster_path})`,
           backgroundSize: "cover",

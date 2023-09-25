@@ -38,6 +38,7 @@ function ActorsDetails() {
       },
       992: {
         perPage: 3,
+        gap:"1rem"
       },
       768: {
         perPage: 3,
@@ -45,7 +46,7 @@ function ActorsDetails() {
       },
       640: {
         perPage: 3,
-        gap: "0.3rem",
+        gap: "0rem",
       },
       425: {
         perPage: 2,
@@ -115,7 +116,7 @@ function ActorsDetails() {
     return personImages.map((image) => {
       return (
         <SplideSlide key={image.id}>
-          <img src={`${IMG_URL_POSTER}${image.file_path}`} key={image.id}></img>
+          <img className="me-2 " src={`${IMG_URL_POSTER}${image.file_path}`} key={image.id}></img>
         </SplideSlide>
       );
     });
