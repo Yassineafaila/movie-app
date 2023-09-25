@@ -124,7 +124,10 @@ body {
   }
   .hero .movie-detail .hero-title{
     cursor: pointer;
-    display: block !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center !important;
+    font-size: 1.1rem !important;
   }
 
   /* .sliderDiv .splide__track .splide__list{
@@ -180,6 +183,9 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 3.125rem;
+}
+.sliderDiv li{
+  width: max-content !important;
 }
 .sliderDiv .splide__arrows .splide__arrow--prev,
 .sliderDiv .splide__arrows .splide__arrow--next {
