@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import { NavbAr } from "./components/Navbar/navbar";
 import Contact from "./pages/Contact";
-import MovieDetails from "./pages/MovieDetails";
+import MovieDetails from "./components/MovieInformation/MovieDetails";
 import MovieTrailer from "./components/MovieTrailer/MovieTrailer";
 import ActorsDetails from "./components/ActorInformation/ActorsDetails";
 

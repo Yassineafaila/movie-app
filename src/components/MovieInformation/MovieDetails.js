@@ -8,11 +8,11 @@ import {
   fetchMovieDetails,
   fetchRecommendation,
   fetchSimilarMovies,
-} from "../services/api_user";
-import Footer from "../components/Footer/Footer";
-import { IMG_URL_BACKGROUND } from "../services/apiUrl";
+} from "../../services/api_user";
+import Footer from "../Footer/Footer";
+import { IMG_URL_BACKGROUND } from "../../services/apiUrl";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import MovieCard from "../components/MovieCard/MovieCard";
+import MovieCard from "../MovieCard/MovieCard";
 function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -62,23 +62,23 @@ function MovieDetails() {
   useEffect(() => {
     const MovieD = async () => {
       const { data } = await fetchMovieDetails(id);
-      setMovieDetail(data)
+      setMovieDetail(data);
     };
     const Cast = async () => {
       const { data } = await fetchCastOfMovie(id);
-      setCast(data.cast)
+      setCast(data.cast);
     };
     const Recommendation = async () => {
       const {
         data: { results },
       } = await fetchRecommendation(id);
-      setRecommendation(results)
+      setRecommendation(results);
     };
     const SimilarMovies = async () => {
       const {
         data: { results },
       } = await fetchSimilarMovies(id);
-      setSimilarMovies(results)
+      setSimilarMovies(results);
     };
     MovieD();
     Cast();

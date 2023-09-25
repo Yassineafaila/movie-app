@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   fetchDetailsActor,
   fetchImagesActor,
@@ -86,13 +88,13 @@ function ActorsDetails() {
           <p className="mt-lg-1 mb-lg-3 my-2 fw-bold">
             Born :{" "}
             <span className="fw-medium text-white">
-              {personDetail.birthday ? personDetail.birthday : "unknown"}
+              {personDetail.birthday ? personDetail.birthday : <Skeleton />}
             </span>
           </p>
           <p className="mt-lg-1 mb-lg-3 my-2 fw-bold">
             Biography :{" "}
             <span className="fw-medium text-white">
-              {personDetail.biography ? personDetail.biography : "unknown"}
+              {personDetail.biography ? personDetail.biography : <Skeleton />}
             </span>
           </p>
           <Link to={`https://www.imdb.com/name/${personDetail.imdb_id}`}>
