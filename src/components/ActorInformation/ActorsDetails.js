@@ -17,6 +17,7 @@ function ActorsDetails() {
   const [personDetail, setPersonDetail] = useState({});
   const [personMovies, setPersonMovies] = useState([]);
   const [personImages, setPersonImages] = useState([]);
+  console.log(personDetail)
   const splideOption = {
     type: "slide",
     // rewind: true,
@@ -90,7 +91,7 @@ function ActorsDetails() {
           <p className="mt-lg-1 mb-lg-3 my-2 fw-bold">
             Biography :{" "}
             <span className="fw-medium text-white">
-              {personDetail.biography ? personDetail.birthday : "unknown"}
+              {personDetail.biography ? personDetail.biography : "unknown"}
             </span>
           </p>
           <Link to={`https://www.imdb.com/name/${personDetail.imdb_id}`}>

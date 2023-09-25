@@ -5,7 +5,7 @@ import { NavbAr } from "./components/Navbar/navbar";
 import Contact from "./pages/Contact";
 import MovieDetails from "./pages/MovieDetails";
 import MovieTrailer from "./components/MovieTrailer/MovieTrailer";
-import ActorsDetails from "./components/Profile/ActorsDetails";
+import ActorsDetails from "./components/ActorInformation/ActorsDetails";
 
 function App() {
   return (
