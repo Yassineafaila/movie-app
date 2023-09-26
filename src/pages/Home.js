@@ -102,7 +102,7 @@ function Home() {
         </SplideSlide>
       );
     });
-  const renderUpComingMovies = () =>
+  const renderUpComingMovies =() =>
     upcomingMovies.map((movie) => {
       return (
         <SplideSlide key={movie.id}>
@@ -112,7 +112,7 @@ function Home() {
     });
   return (
     <>
-      <main className="main">
+      <main className="main container mx-auto">
         <div className="hero position-relative">
           {renderComingMovies()}
 

@@ -150,3 +150,18 @@ export const fetchImagesActor = async (id) => {
     return null;
   }
 }
+// ---discover-movies---
+export const fetchAllMovies = async (number) => {
+  try {
+    const response = await axios.get(`${API_URL}discover/movie?page=${number}`, {
+      params: {
+        api_key:process.env.REACT_APP_MOVIE_API_KEY,
+      }
+    })
+    const data = await response
+    return data;
+  } catch (error) {
+    console.log("Error fetching all Movies", error)
+    return null;
+  }
+}

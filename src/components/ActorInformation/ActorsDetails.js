@@ -125,7 +125,7 @@ function ActorsDetails() {
   };
   return (
     <>
-      <main className="Actor px-4">
+      <main className="Actor container mx-auto">
         <section className="Actor-details">
           {personDetail && renderDetailActor()}
         </section>

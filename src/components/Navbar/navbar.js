@@ -10,7 +10,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 function NavbAr() {
   return (
     <Navbar expand="lg" className="navbar bg-body-tertiary py-4 px-4">
-      <Container fluid>
+      <Container className='mx-auto'>
         <Navbar.Brand href="/" className="text-white logo">
           CineWave
         </Navbar.Brand>

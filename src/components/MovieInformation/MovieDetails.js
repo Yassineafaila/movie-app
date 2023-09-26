@@ -147,7 +147,7 @@ function MovieDetails() {
   };
   return (
     <>
-      <main className="movie-details px-4">
+      <main className="movie-details container mx-auto">
         <section
           className="details d-flex align-items-center justify-content-center"
           style={{
