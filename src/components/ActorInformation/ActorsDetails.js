@@ -22,15 +22,12 @@ function ActorsDetails() {
   console.log(personDetail)
   const splideOption = {
     type: "slide",
-    // rewind: true,
-    // width: 100%,
     gap: "1rem",
     padding: "1rem",
     perPage: 6,
     pagination: false,
     height: 300,
     rewindByDrag: true,
-    padding: "2%",
     breakpoints: {
       1440: {
         perPage: 5,
@@ -118,7 +115,7 @@ function ActorsDetails() {
     return personImages.map((image) => {
       return (
         <SplideSlide key={image.id}>
-          <img className="me-2 " src={`${IMG_URL_POSTER}${image.file_path}`} key={image.id}></img>
+          <img className="me-2 " src={`${IMG_URL_POSTER}${image.file_path}`} key={image.id} alt="profile"></img>
         </SplideSlide>
       );
     });

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "@splidejs/react-splide/css";
 import {
   fetchCastOfMovie,
@@ -13,6 +15,7 @@ import Footer from "../Footer/Footer";
 import { IMG_URL_BACKGROUND } from "../../services/apiUrl";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import MovieCard from "../MovieCard/MovieCard";
+import CastSkeleton from "./CastSkeleton";
 function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ function MovieDetails() {
   const [Cast, setCast] = useState([]);
   const [recommendation, setRecommendation] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [isLoading,setIsLoading]=useState(true)
   const splideOption = {
     type: "slide",
     // rewind: true,
@@ -63,22 +67,26 @@ function MovieDetails() {
     const MovieD = async () => {
       const { data } = await fetchMovieDetails(id);
       setMovieDetail(data);
+      setIsLoading(false)
     };
     const Cast = async () => {
       const { data } = await fetchCastOfMovie(id);
       setCast(data.cast);
+      setIsLoading(false);
     };
     const Recommendation = async () => {
       const {
         data: { results },
       } = await fetchRecommendation(id);
       setRecommendation(results);
+      setIsLoading(false);
     };
     const SimilarMovies = async () => {
       const {
         data: { results },
       } = await fetchSimilarMovies(id);
       setSimilarMovies(results);
+      setIsLoading(false);
     };
     MovieD();
     Cast();
@@ -184,7 +192,8 @@ function MovieDetails() {
         <section className="movie-cast d-flex flex-column mt-5 mb-3  gap-2">
           <h3 className="mt-2 mb-2">Top Cast</h3>
           <div className="d-flex flex-wrap mt-4 gap-5 align-items-center justify-content-center justify-content-lg-start justify-content-md-start">
-            {Cast.length !== 0 && renderCast()}
+            {/* {<CastSkeleton/>} */}
+            {Cast.length === 0?<CastSkeleton/>:renderCast()}
           </div>
         </section>
         {/* --movie-recommendation-section-- */}
