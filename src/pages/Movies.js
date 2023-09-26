@@ -28,7 +28,7 @@ function Movies() {
             <ItemSkeleton cards={20} />
           </div>
         ) : (
-          <div className="row gap-3 gap-xl-4 col-auto align-items-center justify-content-center">
+          <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
             {Movies.map((movie) => (
               <AnimatePresence>
                 <MovieItem key={movie.id} movie={movie} />

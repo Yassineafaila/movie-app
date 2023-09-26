@@ -8,8 +8,8 @@ function MovieItem({ movie }) {
   console.log(movie);
   return (
     <motion.div
-      className="position-relative "
-      style={{ width: "220px" }}
+      className="position-relative"
+      style={{ width: "200px" }}
       id="movie-item"
       initial={{ y: -400, opacity: 0 }}
       animate={{ opacity: 1, y: 0 }}
