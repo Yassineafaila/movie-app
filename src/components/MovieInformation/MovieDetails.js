@@ -191,7 +191,8 @@ function MovieDetails() {
           <h3 className="mt-2 mb-2">Top Cast</h3>
           <div className="d-flex flex-wrap mt-4 gap-5 align-items-center justify-content-center justify-content-lg-start justify-content-md-start">
             {isLoading && <CastSkeleton cards={8} />}
-            {Cast.length === 0?<CastSkeleton/>:renderCast()}
+            {Cast.length === 0 ? <CastSkeleton /> : renderCast()}
+            {isLoading ? <CastSkeleton cards={8}/> :(Cast.length ===0 ? <CastSkeleton cards={8}/>:renderCast())}
           </div>
         </section>
         {/* --movie-recommendation-section-- */}
