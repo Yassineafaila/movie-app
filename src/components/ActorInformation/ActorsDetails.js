@@ -19,7 +19,6 @@ function ActorsDetails() {
   const [personDetail, setPersonDetail] = useState({});
   const [personMovies, setPersonMovies] = useState([]);
   const [personImages, setPersonImages] = useState([]);
-  console.log(personDetail)
   const splideOption = {
     type: "slide",
     gap: "1rem",
@@ -37,7 +36,7 @@ function ActorsDetails() {
       },
       992: {
         perPage: 3,
-        gap:"1rem"
+        gap: "1rem",
       },
       768: {
         perPage: 3,
@@ -79,7 +78,7 @@ function ActorsDetails() {
   const renderDetailActor = () => {
     return (
       <div className="details d-flex align-items-start justify-content-between flex-column flex-lg-row gap-5">
-        <img src={`${IMG_URL_POSTER}/${personDetail.profile_path}`}></img>
+        <img src={`${IMG_URL_POSTER}${personDetail.profile_path}`}></img>
         <div>
           <h4 className="mt-lg-5 mt-3 mb-lg-4">{personDetail.name}</h4>
           <p className="mt-lg-1 mb-lg-3 my-2 fw-bold">
@@ -102,7 +101,6 @@ function ActorsDetails() {
     );
   };
   const renderMovieActor = () => {
-    // const cast = personDetail.cast ? personDetail.cast :null;
     return personMovies.map((movie) => {
       return (
         <SplideSlide key={movie.id}>
@@ -115,7 +113,12 @@ function ActorsDetails() {
     return personImages.map((image) => {
       return (
         <SplideSlide key={image.id}>
-          <img className="me-2 " src={`${IMG_URL_POSTER}${image.file_path}`} key={image.id} alt="profile"></img>
+          <img
+            key={image.id}
+            className="me-2 "
+            src={`${IMG_URL_POSTER}/${image.file_path}`}
+            alt="profile"
+          ></img>
         </SplideSlide>
       );
     });

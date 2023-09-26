@@ -67,31 +67,29 @@ function MovieDetails() {
     const MovieD = async () => {
       const { data } = await fetchMovieDetails(id);
       setMovieDetail(data);
-      setIsLoading(false)
     };
     const Cast = async () => {
       const { data } = await fetchCastOfMovie(id);
       setCast(data.cast);
-      setIsLoading(false);
     };
     const Recommendation = async () => {
       const {
         data: { results },
       } = await fetchRecommendation(id);
       setRecommendation(results);
-      setIsLoading(false);
     };
     const SimilarMovies = async () => {
       const {
         data: { results },
       } = await fetchSimilarMovies(id);
       setSimilarMovies(results);
-      setIsLoading(false);
+      
     };
     MovieD();
     Cast();
     Recommendation();
     SimilarMovies();
+    setIsLoading(false)
   }, [id]);
   const renderCategory = () => {
     const category = MovieDetail.genres ? MovieDetail.genres : null;
@@ -153,7 +151,7 @@ function MovieDetails() {
         <section
           className="details d-flex align-items-center justify-content-center"
           style={{
-            backgroundImage: `url(${IMG_URL_BACKGROUND}${MovieDetail.backdrop_path})`,
+            backgroundImage: `url(${IMG_URL_BACKGROUND} ${MovieDetail.backdrop_path})`,
             backgroundColor: "rgba(0,0,0,0.4)",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -192,7 +190,7 @@ function MovieDetails() {
         <section className="movie-cast d-flex flex-column mt-5 mb-3  gap-2">
           <h3 className="mt-2 mb-2">Top Cast</h3>
           <div className="d-flex flex-wrap mt-4 gap-5 align-items-center justify-content-center justify-content-lg-start justify-content-md-start">
-            {/* {<CastSkeleton/>} */}
+            {isLoading && <CastSkeleton cards={8} />}
             {Cast.length === 0?<CastSkeleton/>:renderCast()}
           </div>
         </section>
