@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactPaginate from "react-paginate";
 import Footer from "../components/Footer/Footer";
 import { fetchAllMovies } from "../services/api_user";
 import MovieItem from "../components/MovieItem/MovieItem";
@@ -7,19 +8,24 @@ import ItemSkeleton from "../components/MovieItem/ItemSkeleton";
 function Movies() {
   const [Movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(100);
+  console.log(currentPage)
   useEffect(() => {
     const fetchMovies = async () => {
       const {
         data: { results },
-      } = await fetchAllMovies(pageNumber);
+      } = await fetchAllMovies(currentPage);
       setTimeout(() => {
         setIsLoading(false);
       }, 2000);
       setMovies(results);
     };
     fetchMovies();
-  }, [pageNumber]);
+  }, [currentPage]);
+  const handlePageChange = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+};
   return (
     <Fragment>
       <main className="container mx-auto px-3 my-4">
@@ -36,6 +42,11 @@ function Movies() {
             ))}
           </div>
         )}
+        <ReactPaginate
+          pageCount={totalPages}
+          onPageChange={handlePageChange}
+          forcePage={currentPage}
+        />
       </main>
       <Footer />
     </Fragment>
