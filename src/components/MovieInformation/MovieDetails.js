@@ -151,7 +151,7 @@ function MovieDetails() {
         <section
           className="details d-flex align-items-center justify-content-center"
           style={{
-            backgroundImage: `url(${IMG_URL_BACKGROUND} ${MovieDetail.backdrop_path})`,
+            backgroundImage: `url(${IMG_URL_BACKGROUND}${MovieDetail.backdrop_path})`,
             backgroundColor: "rgba(0,0,0,0.4)",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",

@@ -13,6 +13,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Footer from "../components/Footer/Footer";
+import FeaturedSkeleton from "../components/FeaturedMovie/FeaturedSkeleton";
 function Home() {
   const [currentSelection, setCurrentSelection] = useState([]);
   const [mostPopularMovies, setMostPopularMovies] = useState([]);
@@ -74,8 +75,8 @@ function Home() {
     focus: "center",
   };
   const renderComingMovies = () => {
-    if (currentSelection.length === 0) {
-      return "Loading...";
+    if (currentSelection.length ===0) {
+      return <FeaturedSkeleton/>;
     } else {
       return (
         <FeaturedMovie
