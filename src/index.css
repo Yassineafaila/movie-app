@@ -14,6 +14,9 @@ svg {
 a {
   text-decoration: none !important;
 }
+ul{
+  list-style: none !important;
+}
 body {
   width: 100%;
   height: 100vh !important;
@@ -528,3 +531,24 @@ body {
   left: 0.625rem;
 }
 
+.pagination-container{
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 0.5rem ;
+}
+.pagination .page-item{
+  background-color: red !important;
+}
+.pagination .page-item .page-link{
+  background-color: transparent !important;
+  border: none !important;
+  padding:5px 10px !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+.pagination .active-page{
+  background-color: #fff !important;
+}
+.pagination .active-page .active{
+  color: #1b1b1b !important;
+}

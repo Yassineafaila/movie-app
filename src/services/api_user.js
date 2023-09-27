@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "./apiUrl";
-export const fetchMovies = async (searchKey,setMovies) => {
-    const type = searchKey ? "search" : "discover";
+export const fetchMovies = async (searchKey, setMovies) => {
+  const type = searchKey ? "search" : "discover";
   const {
     data: { results },
   } = await axios.get(`${API_URL}${type}/movie`, {
@@ -16,11 +16,11 @@ export const fetchComingMovies = async (setCurrentSelection) => {
   const {
     data: { results },
   } = await axios.get(`${API_URL}movie/now_playing`, {
-params: {
+    params: {
       api_key: process.env.REACT_APP_MOVIE_API_KEY,
     },
   });
-  setCurrentSelection(results)
+  setCurrentSelection(results);
 };
 export const fetchPopularMovies = async (setMostPopularMovies) => {
   const {
@@ -40,16 +40,18 @@ export const fetchTopMovies = async (setHighestRatedMovies) => {
       api_key: process.env.REACT_APP_MOVIE_API_KEY,
     },
   });
-  setHighestRatedMovies(results)
+  setHighestRatedMovies(results);
 };
 export const fetchUpComingMovies = async (setUpcomingMovies) => {
-  const { data: { results } } = await axios.get(`${API_URL}movie/upcoming`, {
+  const {
+    data: { results },
+  } = await axios.get(`${API_URL}movie/upcoming`, {
     params: {
-      api_key: process.env.REACT_APP_MOVIE_API_KEY
-    }
+      api_key: process.env.REACT_APP_MOVIE_API_KEY,
+    },
   });
   setUpcomingMovies(results);
-}
+};
 export const fetchMovieDetails = async (id) => {
   try {
     const response = await axios.get(`${API_URL}movie/${id}`, {
@@ -70,7 +72,7 @@ export const fetchCastOfMovie = async (id) => {
     const response = await axios.get(`${API_URL}movie/${id}/credits`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY,
-      }
+      },
     });
     const data = await response;
     return data;
@@ -78,13 +80,13 @@ export const fetchCastOfMovie = async (id) => {
     console.log("Error Fetching movie cast", error);
     return null;
   }
-}
+};
 export const fetchRecommendation = async (id) => {
   try {
     const response = await axios.get(`${API_URL}movie/${id}/recommendations`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY,
-      }
+      },
     });
     const data = await response;
     return data;
@@ -92,13 +94,13 @@ export const fetchRecommendation = async (id) => {
     console.log("Error Fetching movie recommendation", error);
     return null;
   }
-}
+};
 export const fetchSimilarMovies = async (id) => {
   try {
     const response = await axios.get(`${API_URL}movie/${id}/similar`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY,
-      }
+      },
     });
     const data = await response;
     return data;
@@ -106,7 +108,7 @@ export const fetchSimilarMovies = async (id) => {
     console.log("Error Fetching similar movie ", error);
     return null;
   }
-}
+};
 // ----person-(details/movies)---
 export const fetchDetailsActor = async (id) => {
   try {
@@ -121,7 +123,7 @@ export const fetchDetailsActor = async (id) => {
     console.log("Error Fetching Actor details ", error);
     return null;
   }
-}
+};
 export const fetchMovieActor = async (id) => {
   try {
     const response = await axios.get(`${API_URL}person/${id}/movie_credits`, {
@@ -135,7 +137,7 @@ export const fetchMovieActor = async (id) => {
     console.log("Error Fetching Actor details ", error);
     return null;
   }
-}
+};
 export const fetchImagesActor = async (id) => {
   try {
     const response = await axios.get(`${API_URL}person/${id}/images`, {
@@ -149,19 +151,22 @@ export const fetchImagesActor = async (id) => {
     console.log("Error Fetching Actor Images ", error);
     return null;
   }
-}
+};
 // ---discover-movies---
 export const fetchAllMovies = async (number) => {
   try {
-    const response = await axios.get(`${API_URL}discover/movie?page=${number}`, {
-      params: {
-        api_key:process.env.REACT_APP_MOVIE_API_KEY,
+    const response = await axios.get(
+      `${API_URL}discover/movie?page=${number===0?1:number}`,
+      {
+        params: {
+          api_key: process.env.REACT_APP_MOVIE_API_KEY,
+        },
       }
-    })
-    const data = await response
+    );
+    const data = await response;
     return data;
   } catch (error) {
-    console.log("Error fetching all Movies", error)
+    console.log("Error fetching all Movies", error);
     return null;
   }
-}
+};

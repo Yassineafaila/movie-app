@@ -1,31 +1,29 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import ReactPaginate from "react-paginate";
 import Footer from "../components/Footer/Footer";
 import { fetchAllMovies } from "../services/api_user";
 import MovieItem from "../components/MovieItem/MovieItem";
 import ItemSkeleton from "../components/MovieItem/ItemSkeleton";
+import Pagination from "../components/Pagination/Pagination";
 function Movies() {
   const [Movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(100);
-  console.log(currentPage)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(200);
   useEffect(() => {
     const fetchMovies = async () => {
       const {
         data: { results },
       } = await fetchAllMovies(currentPage);
+      console.log(results)
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
       setMovies(results);
     };
     fetchMovies();
   }, [currentPage]);
-  const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-};
+
   return (
     <Fragment>
       <main className="container mx-auto px-3 my-4">
@@ -36,16 +34,15 @@ function Movies() {
         ) : (
           <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
             {Movies.map((movie) => (
-              <AnimatePresence>
-                <MovieItem key={movie.id} movie={movie} />
-              </AnimatePresence>
+              <MovieItem key={movie.id} movie={movie} />
             ))}
           </div>
         )}
-        <ReactPaginate
-          pageCount={totalPages}
-          onPageChange={handlePageChange}
-          forcePage={currentPage}
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          setIsLoading={setIsLoading}
+          currentPage={currentPage}
+          totalPages={totalPages}
         />
       </main>
       <Footer />
