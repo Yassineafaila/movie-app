@@ -5,7 +5,7 @@ import { fetchAllMovies } from "../services/api_user";
 import MovieItem from "../components/MovieItem/MovieItem";
 import ItemSkeleton from "../components/MovieItem/ItemSkeleton";
 import Pagination from "../components/Pagination/Pagination";
-function Movies() {
+function Movies({searchMovie}) {
   const [Movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -15,7 +15,6 @@ function Movies() {
       const {
         data: { results },
       } = await fetchAllMovies(currentPage);
-      console.log(results)
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -23,27 +22,35 @@ function Movies() {
     };
     fetchMovies();
   }, [currentPage]);
-
+console.log(searchMovie)
   return (
     <Fragment>
       <main className="container mx-auto px-3 my-4">
-        {isLoading ? (
+        {searchMovie ? (
+          <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
+            {searchMovie.map((movie) => (
+              <MovieItem key={movie.id} movie={movie} />
+            ))}
+          </div>
+        ) : isLoading ? (
           <div className="d-flex align-items-center justify-content-center flex-wrap gap-2">
             <ItemSkeleton cards={20} />
           </div>
         ) : (
-          <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
-            {Movies.map((movie) => (
-              <MovieItem key={movie.id} movie={movie} />
-            ))}
-          </div>
+          <>
+            <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
+              {Movies.map((movie) => (
+                <MovieItem key={movie.id} movie={movie} />
+              ))}
+            </div>
+            <Pagination
+              setCurrentPage={setCurrentPage}
+              setIsLoading={setIsLoading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          </>
         )}
-        <Pagination
-          setCurrentPage={setCurrentPage}
-          setIsLoading={setIsLoading}
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
       </main>
       <Footer />
     </Fragment>

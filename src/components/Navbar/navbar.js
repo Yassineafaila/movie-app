@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useState} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
  import Button from "react-bootstrap/Button";
  import Container from "react-bootstrap/Container";
  import Form from "react-bootstrap/Form";
  import Nav from "react-bootstrap/Nav";
- import Navbar from "react-bootstrap/Navbar";
- import NavDropdown from "react-bootstrap/NavDropdown";
-function NavbAr() {
+import Navbar from "react-bootstrap/Navbar";
+import { fetchMoviesBySearch } from  "../../services/api_user"
+function NavbAr({ setMovies }) {
+  const [search, setSearch] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+  const [error,setError]=useState("")
+  const searchHandler = (e) => {
+    e.preventDefault()
+    if (search === "") {
+      setError("The Search Cannot Be Empty To Start Searching")
+    }
+    const searchMovie = async () => {
+      const { data:{results} } = await fetchMoviesBySearch(search);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+      setMovies(results);
+    };
+    searchMovie();
+  }
   return (
     <Navbar expand="lg" className="navbar bg-body-tertiary py-4 px-4">
       <Container className='mx-auto'>
@@ -43,14 +60,16 @@ function NavbAr() {
               Sign in
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={searchHandler}>
             <Form.Control
+              value={search}
               type="search"
               placeholder="Search"
               className="me-2 py-1 px-3"
               aria-label="Search"
+              onChange={(e)=>setSearch(e.target.value)}
             />
-            <Button className="btn-search py-1 px-2">
+            <Button className="btn-search py-1 px-2" type='submit'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
           </Form>

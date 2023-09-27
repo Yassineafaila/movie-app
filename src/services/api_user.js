@@ -170,3 +170,20 @@ export const fetchAllMovies = async (number) => {
     return null;
   }
 };
+
+// ---Search-movies---
+export const fetchMoviesBySearch = async (searchKey)=>{
+  try {
+    const response = await axios.get(`${API_URL}search/movie?query=${searchKey}`, {
+      params: {
+        api_key: process.env.REACT_APP_MOVIE_API_KEY,
+        query: searchKey
+      }
+    });
+    const data = await response
+    return data
+  } catch (error) {
+    console.log("Error fetching By Search", error)
+    return null;
+  }
+}
