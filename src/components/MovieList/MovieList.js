@@ -22,7 +22,7 @@ function MovieList({ filterBy }) {
 
         let response;
         if (filterBy === "genre") {
-          response = await fetchMoviesByGenres(currentPage, params.genreName);
+          response = await fetchMoviesByGenres(currentPage, params.id);
         } else if (filterBy === "search") {
           response = await fetchMoviesBySearch(params.movieName);
         } else {
