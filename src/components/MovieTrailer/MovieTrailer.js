@@ -35,12 +35,12 @@ function MovieTrailer() {
   };
   return (
     <>
-      <div className="hero-trailer position-relative">
+      <main className="hero-trailer container mx-auto position-relative">
         <button className="close" onClick={() => navigate("/")}>
           Close
         </button>
         {renderTrailer()}
-      </div>
+      </main>
       <Footer />
     </>
   );

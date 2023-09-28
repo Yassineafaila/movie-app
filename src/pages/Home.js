@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import Footer from "../components/Footer/Footer";
 import FeaturedSkeleton from "../components/FeaturedMovie/FeaturedSkeleton";
 function Home() {
   const [currentSelection, setCurrentSelection] = useState([]);
@@ -191,7 +190,6 @@ function Home() {
           </Splide>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

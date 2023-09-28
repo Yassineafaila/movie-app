@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faL } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "@splidejs/react-splide/css";
@@ -23,7 +23,7 @@ function MovieDetails() {
   const [Cast, setCast] = useState([]);
   const [recommendation, setRecommendation] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
-  const [isLoading,setIsLoading]=useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const splideOption = {
     type: "slide",
     // rewind: true,
@@ -70,7 +70,7 @@ function MovieDetails() {
     };
     const Cast = async () => {
       const { data } = await fetchCastOfMovie(id);
-      setCast(data.cast);
+      setCast(data);
     };
     const Recommendation = async () => {
       const {
@@ -83,50 +83,52 @@ function MovieDetails() {
         data: { results },
       } = await fetchSimilarMovies(id);
       setSimilarMovies(results);
-      
     };
     MovieD();
     Cast();
     Recommendation();
     SimilarMovies();
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   }, [id]);
   const renderCategory = () => {
-    const category = MovieDetail.genres ? MovieDetail.genres : null;
-    return category.map((c) => {
+    // const category = MovieDetail.genres ? MovieDetail.genres : null;
+    console.log(MovieDetail.genres)
+    return MovieDetail.genres.map((genre) => {
       return (
-        <span className="text-white fw-medium mx-2 " key={c.id}>
-          {c.name}
-        </span>
+        <Link to="/movies"  className="text-white fw-medium mx-2 " key={genre.id}>
+          {genre.name}
+        </Link>
       );
     });
   };
   const renderCast = () => {
-    return Cast.map((person) => {
-      if (person.popularity > 5) {
-        return (
+    const topCast = Cast.cast.slice(0, 6);
+    return topCast.slice(0, 6).map((person, i) => {
+      return (
+        <div
+          className="d-flex align-items-center  flex-column"
+          key={i}
+          onClick={() => navigate(`/actors/${person.id}`)}
+        >
           <div
-            className="d-flex align-items-center  flex-column"
+            className="profile"
             key={person.id}
-            onClick={() => navigate(`/actors/${person.id}`)}
-          >
-            <div
-              className="profile"
-              key={person.id}
-              style={{
-                backgroundImage: `url(${IMG_URL_BACKGROUND}${person.profile_path})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
-            ></div>
-            <h4 className="profile-title fw-bold mt-2">{person.name}</h4>
-            <span className="mt-2 fw-medium">{person.character}</span>
-          </div>
-        );
-      }
+            style={{
+              backgroundImage: `url(${IMG_URL_BACKGROUND}${person.profile_path})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+            }}
+          ></div>
+          <h4 className="profile-title fw-bold mt-2">{person.name}</h4>
+          <span className="mt-2 fw-medium">{person.character}</span>
+        </div>
+      );
     });
   };
+
   const renderRecommendation = () => {
     return recommendation.map((movie) => {
       return (
@@ -169,6 +171,9 @@ function MovieDetails() {
                 IMDB :
                 <span className="fw-bold">{MovieDetail.vote_average}</span>
               </span>
+              <span className="text-white fw-medium mx-2">
+                {MovieDetail.runtime} min
+              </span>
             </div>
             <h2 className="fw-bolder title mb-3">{MovieDetail.title}</h2>
             <div className="movie-category text-white d-flex align-items-center justify-content-center text-white flex-wrap">
@@ -190,9 +195,9 @@ function MovieDetails() {
         <section className="movie-cast d-flex flex-column mt-5 mb-3  gap-2">
           <h3 className="mt-2 mb-2">Top Cast</h3>
           <div className="d-flex flex-wrap mt-4 gap-5 align-items-center justify-content-center justify-content-lg-start justify-content-md-start">
-            {isLoading && <CastSkeleton cards={8} />}
-            {Cast.length === 0 ? <CastSkeleton /> : renderCast()}
-            {isLoading ? <CastSkeleton cards={8}/> :(Cast.length ===0 ? <CastSkeleton cards={8}/>:renderCast())}
+            {
+              isLoading ? <CastSkeleton cards={6}/>:renderCast()
+            }
           </div>
         </section>
         {/* --movie-recommendation-section-- */}
@@ -221,8 +226,6 @@ function MovieDetails() {
           </Splide>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }

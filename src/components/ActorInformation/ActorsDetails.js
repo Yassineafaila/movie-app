@@ -7,7 +7,6 @@ import {
   fetchImagesActor,
   fetchMovieActor,
 } from "../../services/api_user";
-import Footer from "../Footer/Footer";
 import { IMG_URL_POSTER } from "../../services/apiUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -78,7 +77,10 @@ function ActorsDetails() {
   const renderDetailActor = () => {
     return (
       <div className="details d-flex align-items-start justify-content-between flex-column flex-lg-row gap-5">
-        <img src={`${IMG_URL_POSTER}${personDetail.profile_path}`}></img>
+        <img
+          src={`${IMG_URL_POSTER}${personDetail.profile_path}`}
+          alt={personDetail.name}
+        ></img>
         <div>
           <h4 className="mt-lg-5 mt-3 mb-lg-4">{personDetail.name}</h4>
           <p className="mt-lg-1 mb-lg-3 my-2 fw-bold">
@@ -178,7 +180,6 @@ function ActorsDetails() {
           </Splide>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

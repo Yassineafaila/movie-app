@@ -35,6 +35,20 @@ body {
 .navbar .navbar-nav {
   max-height: max-content !important;
 }
+.navbar .nav-link{
+  color: #fff !important;
+}
+.navbar .dropdown .dropdown-menu{
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+  padding: 1rem !important;
+  border: none !important;
+  width: 500px !important;
+  max-width: 100% !important;
+}
 .navbar .container button {
   background-color: red !important;
   color: white !important;
@@ -44,6 +58,9 @@ body {
   border: none !important;
 }
 .navbar a:hover {
+  color: red !important;
+}
+.navbar a.active{
   color: red !important;
 }
 .navbar form input {

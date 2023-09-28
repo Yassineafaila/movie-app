@@ -11,7 +11,7 @@ function Pagination({ setCurrentPage, setIsLoading, currentPage, totalPages }) {
     <div className="container mx-auto d-flex align-items-center justify-content-center mt-3 pt-3">
       <ReactPaginate
         key={crypto.randomUUID()}
-        pageCount={totalPages}
+        pageCount={totalPages > 100 ? 100 : totalPages}
         onPageChange={handlePageChange}
         forcePage={currentPage}
         previousLabel={"<"}

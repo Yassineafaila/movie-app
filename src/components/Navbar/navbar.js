@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState,useEffect} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
  import Button from "react-bootstrap/Button";
@@ -6,28 +6,52 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
  import Form from "react-bootstrap/Form";
  import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { fetchMoviesBySearch } from  "../../services/api_user"
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { fetchMoviesBySearch ,fetchAllGenres} from  "../../services/api_user"
+import { useLocation, useNavigate } from 'react-router-dom';
 function NavbAr({ setMovies }) {
+  const location = useLocation()
+  const navigate=useNavigate()
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(true)
+  const [Genres, setGenres] = useState([]);
+  useEffect(() => {
+    const fetchGenres = async () => {
+      const {
+        data: { genres },
+      } = await fetchAllGenres();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      setGenres(genres);
+    };
+    fetchGenres();
+  }, []);
   const [error,setError]=useState("")
   const searchHandler = (e) => {
     e.preventDefault()
     if (search === "") {
       setError("The Search Cannot Be Empty To Start Searching")
     }
-    const searchMovie = async () => {
-      const { data:{results} } = await fetchMoviesBySearch(search);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-      setMovies(results);
-    };
+      const searchMovie = async () => {
+        const {
+          data: { results },
+        } = await fetchMoviesBySearch(search);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+        setMovies(results);
+      };
     searchMovie();
+    navigate(`movies/search/${search}`)
   }
   return (
-    <Navbar expand="lg" className="navbar bg-body-tertiary py-4 px-4">
-      <Container className='mx-auto'>
+    <Navbar
+      // activeKey={location.pathname}
+      expand="lg"
+      className="navbar bg-body-tertiary py-4 px-4"
+    >
+      <Container className="mx-auto">
         <Navbar.Brand href="/" className="text-white logo">
           CineWave
         </Navbar.Brand>
@@ -36,6 +60,7 @@ function NavbAr({ setMovies }) {
           <Nav
             className="m-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
+            activeKey={location.pathname}
             navbarScroll
           >
             <Nav.Link href="/" className="text-white px-lg-3 my-3 fw-medium">
@@ -47,6 +72,23 @@ function NavbAr({ setMovies }) {
             >
               Movies
             </Nav.Link>
+            <NavDropdown
+              className="text-white px-lg-3 my-3 fw-medium"
+              title="Genre"
+              id="navbarScrollingDropdown"
+            >
+              <div className="row row-cols-4">
+                {Genres.map((genre) => {
+                  return (
+                    <NavDropdown.Item href={`/movies/genre/${genre.id}`} key={genre.id}>
+                      {genre.name}
+                    </NavDropdown.Item>
+                  );  
+                })}
+              </div>
+
+              <NavDropdown.Divider />
+            </NavDropdown>
             <Nav.Link
               href="/contact-us"
               className="text-white px-lg-3 my-3 fw-medium"
@@ -67,9 +109,9 @@ function NavbAr({ setMovies }) {
               placeholder="Search"
               className="me-2 py-1 px-3"
               aria-label="Search"
-              onChange={(e)=>setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
             />
-            <Button className="btn-search py-1 px-2" type='submit'>
+            <Button className="btn-search py-1 px-2" type="submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
           </Form>

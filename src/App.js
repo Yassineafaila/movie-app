@@ -7,6 +7,8 @@ import MovieDetails from "./components/MovieInformation/MovieDetails";
 import MovieTrailer from "./components/MovieTrailer/MovieTrailer";
 import ActorsDetails from "./components/ActorInformation/ActorsDetails";
 import { useState } from "react";
+import MovieList from "./components/MovieList/MovieList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [movies, setMovies] = useState(null)
@@ -15,12 +17,25 @@ function App() {
       <NavbAr setMovies={setMovies} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/movies" element={<Movies searchMovie={movies} />}></Route>
+        <Route path="/movies" element={<Movies />}>
+          <Route path="/movies" element={<Movies />}>
+            <Route index element={<MovieList filterBy="all" />} />
+            <Route
+              path="genre/:id"
+              element={<MovieList filterBy="genre" />}
+            />
+            <Route
+              path="search/:movieName"
+              element={<MovieList filterBy="search" searchMovie={movies} />}
+            />
+          </Route>
+        </Route>
         <Route path="/movie/:id" element={<MovieDetails />}></Route>
         <Route path="/movie/:id/videos" element={<MovieTrailer />}></Route>
         <Route path="/actors/:id" element={<ActorsDetails />}></Route>
         <Route path="/contact-us" element={<Contact />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

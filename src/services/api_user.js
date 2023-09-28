@@ -153,10 +153,10 @@ export const fetchImagesActor = async (id) => {
   }
 };
 // ---discover-movies---
-export const fetchAllMovies = async (number) => {
+export const fetchAllMovies = async (pageNumber) => {
   try {
     const response = await axios.get(
-      `${API_URL}discover/movie?page=${number===0?1:number}`,
+      `${API_URL}discover/movie?page=${pageNumber === 0 ? 1 : pageNumber}`,
       {
         params: {
           api_key: process.env.REACT_APP_MOVIE_API_KEY,
@@ -185,5 +185,39 @@ export const fetchMoviesBySearch = async (searchKey)=>{
   } catch (error) {
     console.log("Error fetching By Search", error)
     return null;
+  }
+}
+
+//---get-all-genres---
+export const fetchAllGenres = async () => {
+  try {
+    const response = await axios.get(`${API_URL}genre/movie/list`, {
+      params: {
+        api_key: process.env.REACT_APP_MOVIE_API_KEY
+      }
+    });
+    const data = await response;
+    return data;
+  } catch (error) {
+    console.log("Error fetching Categories Of Movies", error)
+    return null;
+  }
+}
+//---get-movies-with-genre---
+export const fetchMoviesByGenres = async (pageNumber,id) => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/discover/movie?with_genres=${id}&page=${pageNumber}`,
+      {
+        params: {
+          api_key: process.env.REACT_APP_MOVIE_API_KEY,
+        },
+      }
+    );
+    const data = await response
+    return data
+  } catch (error) {
+    console.log("Error fetching this category");
+    return null
   }
 }
