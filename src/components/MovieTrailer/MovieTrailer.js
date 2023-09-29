@@ -41,7 +41,6 @@ function MovieTrailer() {
         </button>
         {renderTrailer()}
       </main>
-      <Footer />
     </>
   );
 }

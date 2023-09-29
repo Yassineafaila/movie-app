@@ -25,17 +25,7 @@ function Home() {
     fetchTopMovies(setHighestRatedMovies);
     fetchUpComingMovies(setUpcomingMovies);
   }, []);
-  //start slide:
-  const nextSlide = () => {
-    setSlideIndex((prevIndex) => (prevIndex + 1) % currentSelection.length);
-  };
 
-  const prevSlide = () => {
-    setSlideIndex((prevIndex) =>
-      prevIndex === 0 ? currentSelection.length - 1 : prevIndex - 1
-    );
-  };
-  //end slide
   const splideOption = {
     type: "slide",
     gap: "1rem",
@@ -74,8 +64,8 @@ function Home() {
     focus: "center",
   };
   const renderComingMovies = () => {
-    if (currentSelection.length ===0) {
-      return <FeaturedSkeleton/>;
+    if (currentSelection.length === 0) {
+      return <FeaturedSkeleton />;
     } else {
       return (
         <FeaturedMovie
@@ -85,110 +75,116 @@ function Home() {
       );
     }
   };
-  const renderPopluarMovies = () =>
-    mostPopularMovies.map((movie) => {
-      return (
-        <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
-        </SplideSlide>
-      );
-    });
-  const renderTopMovies = () =>
-    highestRatedMovies.map((movie) => {
-      return (
-        <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
-        </SplideSlide>
-      );
-    });
-  const renderUpComingMovies =() =>
-    upcomingMovies.map((movie) => {
-      return (
-        <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
-        </SplideSlide>
-      );
-    });
+  const renderPopluarMovies = () => (
+    <Splide
+      options={splideOption}
+      className="sliderDiv"
+      hasTrack={false}
+      aria-label="..."
+    >
+      <SplideTrack>
+        {mostPopularMovies.map((movie) => {
+          return (
+            <SplideSlide key={movie.id}>
+              {<MovieCard movie={movie} key={movie.id} />}
+            </SplideSlide>
+          );
+        })}
+      </SplideTrack>
+
+      <div className="splide__arrows">
+        <button className="splide__arrow splide__arrow--prev">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+        <button className="splide__arrow splide__arrow--next">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+      </div>
+    </Splide>
+  );
+
+  const renderTopMovies = () => (
+    <Splide
+      options={splideOption}
+      className="sliderDiv"
+      hasTrack={false}
+      aria-label="..."
+    >
+      <SplideTrack>
+        {highestRatedMovies.map((movie) => {
+          return (
+            <SplideSlide key={movie.id}>
+              {<MovieCard movie={movie} key={movie.id} />}
+            </SplideSlide>
+          );
+        })}
+      </SplideTrack>
+
+      <div className="splide__arrows">
+        <button className="splide__arrow splide__arrow--prev">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+        <button className="splide__arrow splide__arrow--next">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+      </div>
+    </Splide>
+  );
+  const renderUpComingMovies = () => (
+    <Splide
+      options={splideOption}
+      className="sliderDiv"
+      hasTrack={false}
+      aria-label="..."
+    >
+      <SplideTrack>
+        {upcomingMovies.map((movie) => {
+          return (
+            <SplideSlide key={movie.id}>
+              {<MovieCard movie={movie} key={movie.id} />}
+            </SplideSlide>
+          );
+        })}
+      </SplideTrack>
+
+      <div className="splide__arrows">
+        <button className="splide__arrow splide__arrow--prev">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+        <button className="splide__arrow splide__arrow--next">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+      </div>
+    </Splide>
+  );
+    
   return (
     <>
-      <main className="main container mx-auto px-3">
-        <div className="hero position-relative">
+      <main className="container mx-auto px-3">
+        <section className="hero position-relative">
           {renderComingMovies()}
-
-          <div className="slide-buttons d-flex align-items-center justify-content-between">
-            <BtnSlider moveSlide={prevSlide} direction={"prev"} />
-            <BtnSlider moveSlide={nextSlide} direction={"next"} />
-          </div>
-        </div>
-        <div className="popular-movies position-relative mt-4 p-4">
+        </section>
+        <section className="popular-movies position-relative mt-4 p-2 p-lg-4">
           <div className="d-flex align-items-center  mb-5 gap-2">
             <h2 className="popular-title position-relative">Popular Movies</h2>
             <div className="line"></div>
           </div>
-          <Splide
-            options={splideOption}
-            className="sliderDiv"
-            hasTrack={false}
-            aria-label="..."
-          >
-            <SplideTrack>{renderPopluarMovies()}</SplideTrack>
-
-            <div className="splide__arrows">
-              <button className="splide__arrow splide__arrow--prev">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-              <button className="splide__arrow splide__arrow--next">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-          </Splide>
-        </div>
-        <div className="top-movies position-relative mt-4 p-4">
+          {renderPopluarMovies()}
+        </section>
+        <section className="top-movies position-relative mt-4 p-2 p-lg-4">
           <div className="d-flex align-items-center  mb-5 gap-2">
             <h2 className="top-title position-relative">Top Movies</h2>
             <div className="line"></div>
           </div>
-          <Splide
-            options={splideOption}
-            className="sliderDiv"
-            hasTrack={false}
-            aria-label="..."
-          >
-            <SplideTrack>{renderTopMovies()}</SplideTrack>
-
-            <div className="splide__arrows">
-              <button className="splide__arrow splide__arrow--prev">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-              <button className="splide__arrow splide__arrow--next">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-          </Splide>
-        </div>
-        <div className="up-movies position-relative mt-4 p-4">
+          {renderTopMovies()}
+        </section>
+        <section className="up-movies position-relative mt-4 p-2 p-lg-4">
           <div className="d-flex align-items-center  mb-5 gap-2">
             <h2 className="up-title position-relative">Up Coming Movies</h2>
             <div className="line"></div>
           </div>
-          <Splide
-            options={splideOption}
-            className="sliderDiv"
-            hasTrack={false}
-            aria-label="..."
-          >
-            <SplideTrack>{renderUpComingMovies()}</SplideTrack>
-
-            <div className="splide__arrows">
-              <button className="splide__arrow splide__arrow--prev">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-              <button className="splide__arrow splide__arrow--next">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-          </Splide>
-        </div>
+          {renderUpComingMovies()}
+        </section>
       </main>
     </>
   );

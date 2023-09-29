@@ -93,7 +93,12 @@ function MovieDetails() {
   const renderCategory = () => {
     return MovieDetail.genres.map((genre) => {
       return (
-        <Link to="/movies"  className="text-white fw-medium mx-2 " key={genre.id}>
+        <Link
+          to="/movies"
+          className="text-white fw-medium mx-2 "
+          id="hover"
+          key={genre.id}
+        >
           {genre.name}
         </Link>
       );
@@ -119,7 +124,7 @@ function MovieDetails() {
             }}
           ></div>
           <h4 className="profile-title fw-bold mt-2">{person.name}</h4>
-          <span className="mt-2 fw-medium">{person.character}</span>
+          <span className="mt-2 fw-medium" >{person.character}</span>
         </div>
       );
     });
@@ -182,7 +187,7 @@ function MovieDetails() {
           <div className="text-white mt-4 mb-3">{MovieDetail.overview}</div>
           <Link
             to={`/movie/${MovieDetail.id}/videos`}
-            className="movie-trailer bg-red text-white fw-medium my-4 rounded-pill py-2 px-3"
+            className="bg-white text-black fw-semibold my-4 py-2 px-3 button"
           >
             Watch Trailer
           </Link>
@@ -191,9 +196,7 @@ function MovieDetails() {
         <section className="movie-cast d-flex flex-column mt-5 mb-3  gap-2">
           <h3 className="mt-2 mb-2">Top Cast</h3>
           <div className="d-flex flex-wrap mt-4 gap-5 align-items-center justify-content-center justify-content-lg-start justify-content-md-start">
-            {
-              isLoading ? <CastSkeleton cards={6}/>:renderCast()
-            }
+            {isLoading ? <CastSkeleton cards={6} /> : renderCast()}
           </div>
         </section>
         {/* --movie-recommendation-section-- */}

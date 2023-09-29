@@ -24,7 +24,7 @@ function MovieCard({ movie }) {
           backgroundBlendMode: "overlay",
         }}
       >
-        <h4>{movie.title}</h4>
+        <h4 className="text-center">{movie.title}</h4>
         <div className="overlay"></div>
       </motion.div>
     </AnimatePresence>

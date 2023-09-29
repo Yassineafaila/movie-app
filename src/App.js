@@ -9,7 +9,6 @@ import ActorsDetails from "./components/ActorInformation/ActorsDetails";
 import { useState } from "react";
 import MovieList from "./components/MovieList/MovieList";
 import Footer from "./components/Footer/Footer";
-
 function App() {
   const [movies, setMovies] = useState(null)
   return (
@@ -21,7 +20,7 @@ function App() {
           <Route path="/movies" element={<Movies />}>
             <Route index element={<MovieList filterBy="all" />} />
             <Route
-              path="genre/:id"
+              path="genre/:id/:genreName"
               element={<MovieList filterBy="genre" />}
             />
             <Route

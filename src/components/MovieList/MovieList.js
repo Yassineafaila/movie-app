@@ -47,14 +47,27 @@ function MovieList({ filterBy }) {
   }, [filterBy, currentPage, params]);
   return (
     <main className="container mx-auto px-3 my-4">
-      <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
+      <div>
+        {filterBy === "genre" ? (
+          <h3 className="mt-2 mb-5 text-capitalize mx-auto">
+            {filterBy} : {params.genreName}
+          </h3>
+        ) : filterBy === "search" ? (
+          <h3 className="mt-2 mb-5 text-capitalize mx-auto">
+            Search results for "{params.movieName}"
+          </h3>
+        ) : (
+          <h3 className="mt-2 mb-5 text-capitalize mx-auto">{filterBy}</h3>
+        )}
+      </div>
+      <div className="d-flex  flex-column">
         {isLoading ? (
-          <div className="d-flex align-items-center justify-content-center flex-wrap gap-2">
+          <div className="d-flex  flex-wrap gap-2">
             <ItemSkeleton cards={20} />
           </div>
         ) : (
           <>
-            <div className="row gap-3 gap-xl-4  row-cols-auto align-items-center justify-content-center">
+            <div className="row gap-3 gap-xl-6 justify-content-center justify-content-md-start justify-content-lg-start row-cols-auto ">
               {movies.map((movie) => (
                 <MovieItem key={movie.id} movie={movie} />
               ))}
