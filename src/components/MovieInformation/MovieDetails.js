@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faL } from "@fortawesome/free-solid-svg-icons";
-import Skeleton from "react-loading-skeleton";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "react-loading-skeleton/dist/skeleton.css";
 import "@splidejs/react-splide/css";
 import {
@@ -11,7 +10,6 @@ import {
   fetchRecommendation,
   fetchSimilarMovies,
 } from "../../services/api_user";
-import Footer from "../Footer/Footer";
 import { IMG_URL_BACKGROUND } from "../../services/apiUrl";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import MovieCard from "../MovieCard/MovieCard";
@@ -93,8 +91,6 @@ function MovieDetails() {
     }, 5000);
   }, [id]);
   const renderCategory = () => {
-    // const category = MovieDetail.genres ? MovieDetail.genres : null;
-    console.log(MovieDetail.genres)
     return MovieDetail.genres.map((genre) => {
       return (
         <Link to="/movies"  className="text-white fw-medium mx-2 " key={genre.id}>
@@ -149,7 +145,7 @@ function MovieDetails() {
   };
   return (
     <>
-      <main className="movie-details container mx-auto">
+      <main className="movie-details container mx-auto px-3">
         <section
           className="details d-flex align-items-center justify-content-center"
           style={{

@@ -111,7 +111,7 @@ function Home() {
     });
   return (
     <>
-      <main className="main container mx-auto">
+      <main className="main container mx-auto px-3">
         <div className="hero position-relative">
           {renderComingMovies()}
 
