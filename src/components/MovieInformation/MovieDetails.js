@@ -12,8 +12,47 @@ import {
 } from "../../services/api_user";
 import { IMG_URL_BACKGROUND } from "../../services/apiUrl";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import MovieCard from "../MovieCard/MovieCard";
 import CastSkeleton from "./CastSkeleton";
+import MovieItem from "../MovieItem/MovieItem";
+const splideOption = {
+  type: "slide",
+  // rewind: true,
+  // width: 100%,
+  gap: "1rem",
+  padding: "1rem",
+  perPage: 6,
+  pagination: false,
+  height: 300,
+  rewindByDrag: true,
+  breakpoints: {
+    1440: {
+      perPage: 5,
+    },
+    1024: {
+      perPage: 4,
+    },
+    992: {
+      perPage: 3,
+    },
+    768: {
+      perPage: 3,
+      gap: "3rem",
+    },
+    640: {
+      perPage: 3,
+      gap: "0.3rem",
+    },
+    425: {
+      perPage: 2,
+      gap: "0.2rem",
+    },
+    375: {
+      perPage: 1,
+      gap: "0.1em",
+    },
+  },
+  focus: "center",
+};
 function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,45 +61,7 @@ function MovieDetails() {
   const [recommendation, setRecommendation] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const splideOption = {
-    type: "slide",
-    // rewind: true,
-    // width: 100%,
-    gap: "1rem",
-    padding: "1rem",
-    perPage: 6,
-    pagination: false,
-    height: 300,
-    rewindByDrag: true,
-    breakpoints: {
-      1440: {
-        perPage: 5,
-      },
-      1024: {
-        perPage: 4,
-      },
-      992: {
-        perPage: 3,
-      },
-      768: {
-        perPage: 3,
-        gap: "3rem",
-      },
-      640: {
-        perPage: 3,
-        gap: "0.3rem",
-      },
-      425: {
-        perPage: 2,
-        gap: "0.2rem",
-      },
-      375: {
-        perPage: 1,
-        gap: "0.1em",
-      },
-    },
-    focus: "center",
-  };
+  
   useEffect(() => {
     const MovieD = async () => {
       const { data } = await fetchMovieDetails(id);
@@ -134,7 +135,7 @@ function MovieDetails() {
     return recommendation.map((movie) => {
       return (
         <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
+          {<MovieItem movie={movie} key={movie.id} />}
         </SplideSlide>
       );
     });
@@ -143,7 +144,7 @@ function MovieDetails() {
     return similarMovies.map((movie) => {
       return (
         <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
+          {<MovieItem movie={movie} key={movie.id} />}
         </SplideSlide>
       );
     });

@@ -6,26 +6,12 @@ import {
   fetchUpComingMovies,
 } from "../services/api_user";
 import FeaturedMovie from "../components/FeaturedMovie/FeaturedMovie";
-import BtnSlider from "../components/BtnSlider/BtnSlider";
-import MovieCard from "../components/MovieCard//MovieCard";
+import MovieItem from "../components/MovieItem/MovieItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import FeaturedSkeleton from "../components/FeaturedMovie/FeaturedSkeleton";
-function Home() {
-  const [currentSelection, setCurrentSelection] = useState([]);
-  const [mostPopularMovies, setMostPopularMovies] = useState([]);
-  const [highestRatedMovies, setHighestRatedMovies] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
-  const [slideIndex, setSlideIndex] = useState(0);
-  useEffect(() => {
-    fetchComingMovies(setCurrentSelection);
-    fetchPopularMovies(setMostPopularMovies);
-    fetchTopMovies(setHighestRatedMovies);
-    fetchUpComingMovies(setUpcomingMovies);
-  }, []);
-
   const splideOption = {
     type: "slide",
     gap: "1rem",
@@ -46,7 +32,7 @@ function Home() {
       },
       768: {
         perPage: 3,
-        gap: "3rem",
+        gap: "1rem",
       },
       640: {
         perPage: 3,
@@ -63,6 +49,20 @@ function Home() {
     },
     focus: "center",
   };
+function Home() {
+  const [currentSelection, setCurrentSelection] = useState([]);
+  const [mostPopularMovies, setMostPopularMovies] = useState([]);
+  const [highestRatedMovies, setHighestRatedMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [slideIndex, setSlideIndex] = useState(0);
+  useEffect(() => {
+    fetchComingMovies(setCurrentSelection);
+    fetchPopularMovies(setMostPopularMovies);
+    fetchTopMovies(setHighestRatedMovies);
+    fetchUpComingMovies(setUpcomingMovies);
+  }, []);
+
+
   const renderComingMovies = () => {
     if (currentSelection.length === 0) {
       return <FeaturedSkeleton />;
@@ -86,7 +86,7 @@ function Home() {
         {mostPopularMovies.map((movie) => {
           return (
             <SplideSlide key={movie.id}>
-              {<MovieCard movie={movie} key={movie.id} />}
+              {<MovieItem movie={movie} key={movie.id} />}
             </SplideSlide>
           );
         })}
@@ -114,7 +114,7 @@ function Home() {
         {highestRatedMovies.map((movie) => {
           return (
             <SplideSlide key={movie.id}>
-              {<MovieCard movie={movie} key={movie.id} />}
+              {<MovieItem movie={movie} key={movie.id} />}
             </SplideSlide>
           );
         })}
@@ -141,7 +141,7 @@ function Home() {
         {upcomingMovies.map((movie) => {
           return (
             <SplideSlide key={movie.id}>
-              {<MovieCard movie={movie} key={movie.id} />}
+              {<MovieItem movie={movie} key={movie.id} />}
             </SplideSlide>
           );
         })}
@@ -162,6 +162,7 @@ function Home() {
     <>
       <main className="container mx-auto px-3">
         <section className="hero position-relative">
+          
           {renderComingMovies()}
         </section>
         <section className="popular-movies position-relative mt-4 p-2 p-lg-4">

@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import { fetchMovieDetails } from "../../services/api_user";
-import Footer from "../Footer/Footer";
+
 function MovieTrailer() {
   const [movieTrailer, setMovieTrailer] = useState([]);
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
   const opts = {
     height: "100%",
     width: "100%",
     padding: "1rem",
     playerVars: {
       autoplay: 1,
-      controls: 0,
     },
+  };
+  const cancelHandler = () => {
+    navigate(`/`);
   };
   useEffect(() => {
     const selectMovie = async () => {
@@ -35,9 +37,18 @@ function MovieTrailer() {
   };
   return (
     <>
-      <main className="hero-trailer container mx-auto position-relative">
-        <button className="close" onClick={() => navigate("/")}>
-          Close
+      <main className="hero-trailer container mx-auto position-relative my-4">
+        <button
+          onClick={cancelHandler}
+          style={{
+            backgroundColor: "red",
+            color: "white",
+            border: "0px",
+            width: "30px",
+            height: "30px",
+          }}
+        >
+          X
         </button>
         {renderTrailer()}
       </main>

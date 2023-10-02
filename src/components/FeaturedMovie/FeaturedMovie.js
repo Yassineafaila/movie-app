@@ -5,7 +5,8 @@ import { faCirclePlay, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-function FeaturedMovie({ movie }) {
+function FeaturedMovie({movie}) {
+
   return (
     <AnimatePresence>
       <motion.div
@@ -19,7 +20,7 @@ function FeaturedMovie({ movie }) {
         className="container py-3 py-lg-0"
       >
         <div className="img-container">
-          <img src={`${IMG_URL_BACKGROUND}${movie.backdrop_path}`}></img>
+          <img src={`${IMG_URL_BACKGROUND}${movie.backdrop_path}`} alt="MovieImage"></img>
         </div>
         <motion.div
           initial={{ opacity: 0, x: -1000 }}

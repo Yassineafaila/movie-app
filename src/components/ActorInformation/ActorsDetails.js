@@ -12,51 +12,52 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieItem from "../MovieItem/MovieItem";
+const splideOption = {
+  type: "slide",
+  gap: "1rem",
+  padding: "1rem",
+  perPage: 6,
+  pagination: false,
+  height: 300,
+  rewindByDrag: true,
+  breakpoints: {
+    1440: {
+      perPage: 5,
+    },
+    1024: {
+      perPage: 4,
+    },
+    992: {
+      perPage: 3,
+      gap: "1rem",
+    },
+    768: {
+      perPage: 3,
+      gap: "3rem",
+    },
+    640: {
+      perPage: 3,
+      gap: "0rem",
+    },
+    425: {
+      perPage: 2,
+      gap: "0.2rem",
+    },
+    375: {
+      perPage: 1,
+      gap: "0.1em",
+      padding: "0 0 0 1em",
+    },
+  },
+  focus: "center",
+};
 function ActorsDetails() {
   const { id } = useParams();
   const [personDetail, setPersonDetail] = useState({});
   const [personMovies, setPersonMovies] = useState([]);
   const [personImages, setPersonImages] = useState([]);
-  const splideOption = {
-    type: "slide",
-    gap: "1rem",
-    padding: "1rem",
-    perPage: 6,
-    pagination: false,
-    height: 300,
-    rewindByDrag: true,
-    breakpoints: {
-      1440: {
-        perPage: 5,
-      },
-      1024: {
-        perPage: 4,
-      },
-      992: {
-        perPage: 3,
-        gap: "1rem",
-      },
-      768: {
-        perPage: 3,
-        gap: "3rem",
-      },
-      640: {
-        perPage: 3,
-        gap: "0rem",
-      },
-      425: {
-        perPage: 2,
-        gap: "0.2rem",
-      },
-      375: {
-        perPage: 1,
-        gap: "0.1em",
-        padding: "0 0 0 1em",
-      },
-    },
-    focus: "center",
-  };
+  
   useEffect(() => {
     const DataActor = async () => {
       const { data } = await fetchDetailsActor(id);
@@ -106,7 +107,7 @@ function ActorsDetails() {
     return personMovies.map((movie) => {
       return (
         <SplideSlide key={movie.id}>
-          {<MovieCard movie={movie} key={movie.id} />}
+          {<MovieItem movie={movie} key={movie.id} />}
         </SplideSlide>
       );
     });
@@ -127,7 +128,7 @@ function ActorsDetails() {
   };
   return (
     <>
-      <main className="Actor container mx-auto">
+      <main className="Actor container mx-auto px-3">
         <section className="Actor-details">
           {personDetail && renderDetailActor()}
         </section>
