@@ -169,7 +169,7 @@ function MovieDetails() {
                 {MovieDetail.release_date}
               </span>
               <span className="text-white fw-medium border-2 "></span>
-              <span className="text-white fw-medium">
+              <span className="text-white  fw-medium  IMDB">
                 IMDB :
                 <span className="fw-bold">{MovieDetail.vote_average}</span>
               </span>

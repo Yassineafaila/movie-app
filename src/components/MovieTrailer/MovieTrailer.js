@@ -29,7 +29,7 @@ function MovieTrailer() {
   }, [id]);
   const renderTrailer = () => {
     if (movieTrailer && movieTrailer.videos && movieTrailer.videos.results) {
-      const trailer = movieTrailer.videos.results[1]; // Assuming you want the first trailer
+      const trailer = movieTrailer.videos.results[1]; 
       return <YouTube videoId={trailer.key} className="iframe" opts={opts} />;
     } else {
       return <p>No trailer available</p>;

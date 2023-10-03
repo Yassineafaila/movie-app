@@ -11,7 +11,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { fetchMoviesBySearch, fetchAllGenres } from "../../services/api_user";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function NavbAr({ setMovies }) {
+function NavbAr({ setMovies, setIsModalOpen, isModalOpen }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -25,11 +25,10 @@ function NavbAr({ setMovies }) {
     };
     fetchGenres();
   }, []);
-  const [error, setError] = useState("");
   const searchHandler = (e) => {
     e.preventDefault();
     if (search === "") {
-      setError("The Search Cannot Be Empty To Start Searching");
+      console.log("The Search Cannot Be Empty To Start Searching");
     } else {
       const searchMovie = async () => {
         const {
@@ -90,13 +89,7 @@ function NavbAr({ setMovies }) {
                 <NavDropdown.Divider />
               </NavDropdown>
               <Nav.Link
-                href="/contact-us"
-                className="text-white px-lg-3 my-3 fw-medium"
-              >
-                Contact Us
-              </Nav.Link>
-              <Nav.Link
-                href="#action2"
+                onClick={() => setIsModalOpen(!isModalOpen)}
                 className="text-white px-lg-3 my-3 fw-medium"
               >
                 Sign in
