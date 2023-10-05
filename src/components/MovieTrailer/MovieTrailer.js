@@ -37,7 +37,7 @@ function MovieTrailer() {
   };
   return (
     <>
-      <main className="hero-trailer container mx-auto position-relative my-4">
+      <main className="hero-trailer container mx-auto position-relative my-5">
         <button
           onClick={cancelHandler}
           style={{
