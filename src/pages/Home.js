@@ -6,49 +6,53 @@ import {
   fetchUpComingMovies,
 } from "../services/api_user";
 import FeaturedMovie from "../components/FeaturedMovie/FeaturedMovie";
-import MovieItem from "../components/MovieItem/MovieItem"
+import MovieItem from "../components/MovieItem/MovieItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay"
 import FeaturedSkeleton from "../components/FeaturedMovie/FeaturedSkeleton";
-  const splideOption = {
-    type: "slide",
-    gap: "1rem",
-    padding: "1rem",
-    perPage: 6,
-    pagination: false,
-    height: 300,
-    rewindByDrag: true,
-    breakpoints: {
-      1440: {
-        perPage: 5,
-      },
-      1024: {
-        perPage: 4,
-      },
-      992: {
-        perPage: 3,
-      },
-      768: {
-        perPage: 3,
-        gap: "1rem",
-      },
-      640: {
-        perPage: 3,
-        gap: "0.3rem",
-      },
-      425: {
-        perPage: 2,
-        gap: "0.2rem",
-      },
-      375: {
-        perPage: 1,
-        gap: "0.1em",
-      },
+const splideOption = {
+  type: "slide",
+  gap: "1rem",
+  padding: "1rem",
+  perPage: 6,
+  pagination: false,
+  height: 300,
+  rewindByDrag: true,
+  breakpoints: {
+    1440: {
+      perPage: 5,
     },
-    focus: "center",
-  };
+    1024: {
+      perPage: 4,
+    },
+    992: {
+      perPage: 3,
+    },
+    768: {
+      perPage: 3,
+      gap: "1rem",
+    },
+    640: {
+      perPage: 3,
+      gap: "0.3rem",
+    },
+    425: {
+      perPage: 2,
+      gap: "0.2rem",
+    },
+    375: {
+      perPage: 1,
+      gap: "0.1em",
+    },
+  },
+  focus: "center",
+};
 function Home() {
   const [currentSelection, setCurrentSelection] = useState([]);
   const [mostPopularMovies, setMostPopularMovies] = useState([]);
@@ -62,17 +66,27 @@ function Home() {
     fetchUpComingMovies(setUpcomingMovies);
   }, []);
 
-
   const renderComingMovies = () => {
+    // if (currentSelection.length === 0) {
+    //   return <FeaturedSkeleton />;
+    // } else {
+    //   return (
+    //     <FeaturedMovie
+    //       movie={currentSelection}
+    //       key={currentSelection}
+    //     />
+    //   );
+    // }
     if (currentSelection.length === 0) {
       return <FeaturedSkeleton />;
     } else {
-      return (
-        <FeaturedMovie
-          movie={currentSelection[slideIndex]}
-          key={currentSelection[slideIndex].id}
-        />
-      );
+      currentSelection.map((movie) => {
+        return (
+          <SwiperSlide>
+            <FeaturedMovie movie={movie} key={movie.id} />
+          </SwiperSlide>
+        );
+      });
     }
   };
   const renderPopluarMovies = () => (
@@ -157,13 +171,26 @@ function Home() {
       </div>
     </Splide>
   );
-    
+
   return (
     <>
       <main className="container mx-auto px-3">
         <section className="hero position-relative">
-          
-          {renderComingMovies()}
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={1}
+            modules={[Autoplay]}
+            autoplay={{ delay: 5000 }}
+          >
+            {currentSelection.map((movie) => {
+              return (
+                <SwiperSlide key={movie.id}>
+                  <FeaturedMovie movie={movie} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <div className="overlay"></div>
         </section>
         <section className="popular-movies position-relative mt-4 p-2 p-lg-4">
           <div className="d-flex align-items-center  mb-5 gap-2">

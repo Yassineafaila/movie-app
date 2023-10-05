@@ -176,6 +176,15 @@ main.container {
   font-weight: 600;
   margin-left: 0.625rem !important;
 }
+.hero .overlay{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
 @media screen and (min-width: 1024px) {
   .hero .container .img-container {
     height: 100%;
@@ -657,3 +666,15 @@ main.container {
   background-color: rgba(0, 0, 0, 0.4);
 }
 /* ---end-Modal--- */
+/* ----start-swiper---- */
+.swiper{
+  height:  100%;
+}
+
+@media screen and (max-width:500px){
+  .swiper{
+    height: max-content;
+  }
+}
+
+/* ----end-swiper---- */
