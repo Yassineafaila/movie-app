@@ -128,11 +128,21 @@ main.container {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  z-index: 999;
+  
 }
 .hero .container .img-container {
   margin-top: 0.625rem !important;
   margin-bottom: 1.25rem !important;
+  position: relative;
+}
+.hero .container .img-container::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .hero .container .img-container img {
   height: 100%;
@@ -140,6 +150,7 @@ main.container {
 }
 .hero .container .content {
   margin: 20px 0 !important;
+  z-index: 999999999999999999999;
 }
 .hero .container .content .title {
   text-transform: uppercase;

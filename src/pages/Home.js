@@ -180,7 +180,7 @@ function Home() {
             spaceBetween={0}
             slidesPerView={1}
             modules={[Autoplay]}
-            autoplay={{ delay: 5000 }}
+            autoplay={{ delay: 3000 }}
           >
             {currentSelection.map((movie) => {
               return (
@@ -190,7 +190,7 @@ function Home() {
               );
             })}
           </Swiper>
-          <div className="overlay"></div>
+          
         </section>
         <section className="popular-movies position-relative mt-4 p-2 p-lg-4">
           <div className="d-flex align-items-center  mb-5 gap-2">
