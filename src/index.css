@@ -128,6 +128,7 @@ main.container {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  z-index: 999;
 }
 .hero .container .img-container {
   margin-top: 0.625rem !important;
