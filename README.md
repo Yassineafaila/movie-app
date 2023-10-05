@@ -20,7 +20,7 @@ This project is a web application that allows users to search for movies and vie
 - [Axios](https://axios-http.com/) - HTTP Client
 - [SplideJS](https://splidejs.com/) - Carousel
 - [framer-motion](https://www.framer.com/motion/) - animation
-
+- [Swiperjs](https://swiperjs.com/react) --Carousel
 ## Getting Started <a name = "getting_started"></a>
 
 First, run the development server:
